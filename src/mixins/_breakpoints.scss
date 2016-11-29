@@ -1,0 +1,56 @@
+@function getBreakpoint($name, $minMax: 'min', $breakpoints: $breakpoints, $breakpoint-names: map-keys($breakpoints)) {
+    @if $minMax == 'min' {
+        // Min
+        $min: map-get($breakpoints, $name);
+        @return if($min != 0, $min, null);
+    } @else {
+        // Max
+        $n: index($breakpoint-names, $name);
+        @return if($n < length($breakpoint-names),
+            getBreakpoint(nth($breakpoint-names, $n + 1), 'min', $breakpoints, $breakpoint-names),
+            null
+        );
+    }
+}
+
+@mixin media-min($name, $type: 'screen') {
+    $min: getBreakpoint($name, 'min');
+    @if $min {
+        @media (min-width: $min) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+@mixin media-max($name) {
+    $max: getBreakpoint($name, 'max');
+    @if $max {
+        @media (max-width: $max) {
+            @content;
+        }
+    } @else {
+        @content;
+    }
+}
+
+@mixin media-breakpoint-between($lower, $upper, $type: 'screen') {
+    @include media-min($lower) {
+        @include media-max($upper) {
+            @content;
+        }
+    }
+}
+
+@mixin media-breakpoint-up($bp) {
+    @include media-min($bp) {
+        @content;
+    }
+}
+
+@mixin media-breakpoint-down($bp) {
+    @include media-max($bp) {
+        @content;
+    }
+}

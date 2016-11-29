@@ -1,0 +1,15 @@
+$colOrder: (
+    first: -1,
+    last: 1
+) !default;
+
+@each $bp in map-keys($breakpoints) {
+    @include media-min($bp) {
+        // Ordering
+        @each $type, $value in $colOrder {
+            .col-#{$bp}--#{$type} {
+                order: $value;
+            }
+        }
+    }
+}

@@ -1,0 +1,50 @@
+$rowAligX: (
+    start: flex-start,
+    center: center,
+    end: flex-end
+) !default;
+
+$rowAligY: (
+    top: flex-start,
+    middle: center,
+    bottom: flex-end
+) !default;
+
+$rowDistribution: (
+    around: space-around,
+    between: space-between
+) !default;
+
+@each $bp in map-keys($breakpoints) {
+    @include media-min($bp) {
+        // Align on X Axis
+        @each $type, $value in $rowAligX {
+            .row-#{$bp}--#{$type} {
+                justify-content: $value;
+                text-align: $type;
+            }
+        }
+
+        // Align on Y Axis
+        @each $type, $value in $rowAligY {
+            .row-#{$bp}--#{$type} {
+                align-items: $value;
+            }
+        }
+
+        // Distribution
+        @each $type, $value in $rowDistribution {
+            .row-#{$bp}--#{$type} {
+                justify-content: $value;
+            }
+        }
+    }
+}
+
+@each $bp in map-keys($breakpoints) {
+    @include media-breakpoint-between($bp, $bp) {
+        .row-#{$bp}-column {
+            flex-direction: column;
+        }
+    }
+}

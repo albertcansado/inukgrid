@@ -1,0 +1,65 @@
+@mixin make-row($gutter: $columnsGutter) {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex: 0 1 auto;
+    margin-left: -$gutter;
+}
+
+@mixin make-col($gutter: $columnsGutter) {
+    box-sizing: border-box;
+    flex: 0 0 auto;
+    padding-left: $gutter;
+}
+
+@mixin make-col-auto {
+    flex-grow: 1;
+    flex-basis: 0;
+    max-width: 100%;
+}
+
+@mixin make-col-size($size, $columns: $columnsNum) {
+    flex-basis: percentage($size / $columns);
+    max-width: percentage($size / $columns);
+}
+
+@mixin make-offset-size($size, $columns: $columnsNum) {
+    margin-left: percentage($size / $columns);
+}
+
+
+@mixin make-grid-columns() {
+    %grid-column {
+        @include make-col();
+    }
+
+    @each $breakpoint in map-keys($breakpoints) {
+        @for $i from 1 through $columnsNum {
+            .col-#{$breakpoint}-#{$i} {
+                @extend %grid-column;
+            }
+        }
+
+        @include media-min($breakpoint) {
+            // Column with auto width
+            .col-#{$breakpoint} {
+                @include make-col-auto();
+            }
+
+            // Columns
+            @for $i from 1 through $columnsNum {
+                .col-#{$breakpoint}-#{$i} {
+                    @include make-col-size($i);
+                }
+            }
+
+            // Offset
+            @for $i from 1 through $columnsNum {
+                .offset-#{$breakpoint}-#{$i} {
+                    @include make-offset-size($i);
+                }
+            }
+        }
+    }
+}

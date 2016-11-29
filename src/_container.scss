@@ -1,0 +1,33 @@
+@if $useContainer {
+    %centered {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    // Container
+    .container {
+        @extend %centered;
+
+        @if $containerMaxWidth {
+            max-width: $containerMaxWidth;
+        }
+    }
+
+    .container--fluid {
+        @extend %centered;
+        padding-left: $containerFluidPadding;
+        padding-right: $containerFluidPadding;
+    }
+
+    .container--padded {
+        @include paddedContainer();
+    }
+
+    @each $breakpoint in map-keys($breakpoints) {
+        @include media-breakpoint-between($breakpoint, $breakpoint) {
+            .container-#{$breakpoint}--padded {
+                @include paddedContainer();
+            }
+        }
+    }
+}

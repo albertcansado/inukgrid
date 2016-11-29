@@ -1,0 +1,4 @@
+@mixin paddedContainer() {
+    padding-left: $containerPadding;
+    padding-right: $containerPadding;
+}

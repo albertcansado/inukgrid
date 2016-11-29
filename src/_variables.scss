@@ -1,0 +1,45 @@
+// Conditions
+//
+
+//
+$boxSizing: true;
+
+//
+$useContainer: true;
+
+
+// Breakpoints
+//
+$breakpoints: (
+    // Extra small screen / phone (portrait)
+    xs: 0,
+    // Small screen / phone (landscape)
+    sm: 36em,
+    // Medium screen / tablet (portrait)
+    md: 48em,
+    // Large screen / desktop / tablet (landscape)
+    lg: 62em,
+    // Extra large screen / wide desktop
+    xl: 75em
+) !default;
+
+
+// Container
+//
+
+// Define max container size, comment if...
+$containerMaxWidth: 1200px;
+
+// Container Paddings
+$containerFluidPadding: 1.5rem;
+$containerPadding: .5rem;
+
+
+// Row
+//
+
+
+// Column
+//
+$columnsNum: 12;
+$columnsGutter: 1rem;
