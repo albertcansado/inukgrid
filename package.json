@@ -17,11 +17,15 @@
   "author": "Albert Cansado",
   "license": "MIT",
   "devDependencies": {
+    "autoprefixer": "^6.5.3",
+    "css-mqpacker": "^5.0.1",
+    "cssnano": "^3.8.1",
     "grunt": "^1.0.1",
     "grunt-contrib-sass": "^1.0.0",
     "grunt-contrib-watch": "^1.0.0",
     "grunt-handlebars-layouts": "^0.2.7",
     "grunt-postcss": "^0.8.0",
+    "install": "^0.8.2",
     "minireset.css": "0.0.2"
   }
 }
