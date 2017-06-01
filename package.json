@@ -1,6 +1,6 @@
 {
   "name": "inukgrid",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Another grid system based on flexbox",
   "main": "index.js",
   "scripts": {
