@@ -1,8 +1,21 @@
+//
+// Column helpers
+//     - Ordening
+//     - Remove padding
+// --------------------------------------------------
+
+// Variables
+// ========================================================================
 $colOrder: (
     first: -1,
     last: 1
 ) !default;
 
+// Component
+// ========================================================================
+
+// Ordening
+//
 @each $bp in map-keys($breakpoints) {
     @include media-min($bp) {
         // Ordering
@@ -10,6 +23,21 @@ $colOrder: (
             .col-#{$bp}--#{$type} {
                 order: $value;
             }
+        }
+    }
+}
+
+// Alpha (set padding-left to 0)
+//
+@each $bp in map-keys($breakpoints) {
+    .alpha-#{$bp}-up {
+        @include media-breakpoint-up($bp) {
+            padding-left: 0;
+        }
+    }
+    .alpha-#{$bp}-down {
+        @include media-breakpoint-down($bp) {
+            padding-left: 0;
         }
     }
 }
