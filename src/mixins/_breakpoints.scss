@@ -7,7 +7,7 @@
         // Max
         $n: index($breakpoint-names, $name);
         @return if($n < length($breakpoint-names),
-            getBreakpoint(nth($breakpoint-names, $n + 1), 'min', $breakpoints, $breakpoint-names),
+            getBreakpoint(nth($breakpoint-names, $n + 1), 'min', $breakpoints, $breakpoint-names) - .01,
             null
         );
     }
