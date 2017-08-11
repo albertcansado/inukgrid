@@ -13,10 +13,12 @@
     padding-left: $gutter;
 }
 
-@mixin make-col-auto {
+@mixin make-col-auto($gutter: $columnsGutter) {
+    box-sizing: border-box;
     flex-grow: 1;
     flex-basis: 0;
     max-width: 100%;
+    padding-left: $gutter;
 }
 
 @mixin make-col-size($size, $columns: $columnsNum) {
