@@ -1,17 +1,19 @@
-.flex {
-    display: flex;
-}
+@if $useFlex {
+    .flex {
+        display: flex;
+    }
 
-// Aligment
-.flex--centerfull {
-    justify-content: center !important;
-    align-items: center !important;
-}
+    // Aligment
+    .flex--centerfull {
+        justify-content: center !important;
+        align-items: center !important;
+    }
 
-.flex--center {
-    justify-content: center !important;
-}
+    .flex--center {
+        justify-content: center !important;
+    }
 
-.flex--middle {
-    align-items: center !important;
+    .flex--middle {
+        align-items: center !important;
+    }
 }
