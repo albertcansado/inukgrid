@@ -1,24 +1,28 @@
-@mixin make-row($gutter: $columnsGutter) {
+@mixin make-row($gap: $columnsGap) {
     box-sizing: border-box;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     flex: 0 1 auto;
-    margin-left: -$gutter;
+    margin: -$gap;
 }
 
-@mixin make-col($gutter: $columnsGutter) {
+@mixin make-row-gapless() {
+    margin: 0;
+}
+
+@mixin make-col($gap: $columnsGap) {
     box-sizing: border-box;
     flex: 0 0 auto;
-    padding-left: $gutter;
+    padding: $gap;
 }
 
-@mixin make-col-auto($gutter: $columnsGutter) {
+@mixin make-col-auto($gap: $columnsGap) {
     box-sizing: border-box;
     flex-grow: 1;
     flex-basis: 0;
     max-width: 100%;
-    padding-left: $gutter;
+    padding: $gap;
 }
 
 @mixin make-col-size($size, $columns: $columnsNum) {
@@ -61,6 +65,24 @@
                 .offset-#{$breakpoint}-#{$i} {
                     @include make-offset-size($i);
                 }
+            }
+        }
+    }
+}
+
+@mixin make-columns-gapless() {
+    %gapless {
+        padding: 0 !important;
+    }
+
+    @each $breakpoint in map-keys($breakpoints) {
+        .row.is-gapless > .col-#{$breakpoint} {
+            @extend %gapless;
+        }
+
+        @for $i from 1 through $columnsNum {
+            .row.is-gapless > .col-#{$breakpoint}-#{$i} {
+                @extend %gapless;
             }
         }
     }

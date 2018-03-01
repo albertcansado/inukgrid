@@ -2,13 +2,31 @@
 .row {
     @include make-row();
 
+    &.is-gapless {
+        @include make-row-gapless();
+
+        & + & {
+            margin-top: ($columnsGap * 2);
+        }
+    }
+
+    &.is-multiline {
+        flex-wrap: wrap;
+    }
+
     &--reverse {
         flex-direction: row-reverse;
+    }
+
+    & + & {
+        margin-top: $columnsGap;
     }
 }
 
 // Columns
 @include make-grid-columns();
+
+@include make-columns-gapless();
 
 .col--reverse {
     flex-direction: column-reverse;
